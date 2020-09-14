@@ -30,9 +30,8 @@ def get_file_extension(filename):
         occurrences = [m.start() for m in re.finditer('\.', filename)]
         return filename[occurrences[-1] + 1:]
     except:
-        pass
+        return ''
 
-    return ''
 
 
 assert(get_path_part("log/cups/access_log") == "log/cups/")
