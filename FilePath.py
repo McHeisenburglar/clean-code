@@ -1,11 +1,8 @@
 import re
 import random
 
-# log/cups/access_log -> log/cups/
+# "log/cups/access_log" -> "log/cups/"
 def get_path_part(filename):
-    if filename[len(filename) - 1] == '/':
-        return filename
-
     try:
         index = filename.rindex('/')
         dir_name = filename[0: index + 1]
@@ -13,7 +10,7 @@ def get_path_part(filename):
     except:
         return ''
 
-# log/cups/access_log -> access_log
+# "log/cups/access_log" -> "access_log"
 def get_filename_part(filename):
     try:
         index = filename.rindex('/')
@@ -24,7 +21,7 @@ def get_filename_part(filename):
 
 
 
-# assets/image.png -> png
+# "assets/image.png" -> "png"
 def get_file_extension(filename):
     try:
         occurrences = [m.start() for m in re.finditer('\.', filename)]
