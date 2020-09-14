@@ -1,7 +1,7 @@
 import re
 import random
 
-# log/cups/
+# log/cups/access_log -> log/cups/
 def get_path_part(sFilename):
     if len(sFilename) > 0 and sFilename[len(sFilename) - 1] == '/':
         return sFilename
@@ -20,8 +20,8 @@ def get_path_part(sFilename):
 
     return dirName
 
-# access_log
-def getFilenamePart(sFilename):
+# log/cups/access_log -> access_log
+def get_filename_part(sFilename):
     try:
         int(sFilename.rindex('/'))
     except:
@@ -32,8 +32,8 @@ def getFilenamePart(sFilename):
     return base_name
 
 
-#.png
-def getEndOfFile(sFilename):
+# assets/image.png -> png
+def get_file_extension(sFilename):
     try:
         occurrences = [m.start() for m in re.finditer('\.', sFilename)]
         return sFilename[occurrences[-1] + 1:]
@@ -47,10 +47,10 @@ assert(get_path_part("log/cups/access_log") == "log/cups/")
 assert(get_path_part("log/cups/") == "log/cups/")
 assert(get_path_part("cups/access_log") == "cups/")
 assert(get_path_part("access_log") == "")
-assert(getFilenamePart("log/cups/access_log") == "access_log")
-assert(getFilenamePart("log/cups/") == "")
-assert(getFilenamePart("cups/access_log") == "access_log")
-assert(getFilenamePart("access_log") == "access_log")
-assert(getEndOfFile("log/cups/access_log") == "")
-assert(getEndOfFile("base/FileHelper.cpp") == "cpp")
-assert(getEndOfFile("base/FileHelper.cpp.bak") == "bak")
+assert(get_filename_part("log/cups/access_log") == "access_log")
+assert(get_filename_part("log/cups/") == "")
+assert(get_filename_part("cups/access_log") == "access_log")
+assert(get_filename_part("access_log") == "access_log")
+assert(get_file_extension("log/cups/access_log") == "")
+assert(get_file_extension("base/FileHelper.cpp") == "cpp")
+assert(get_file_extension("base/FileHelper.cpp.bak") == "bak")
