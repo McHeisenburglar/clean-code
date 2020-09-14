@@ -16,8 +16,8 @@ def get_path_part(filename):
 # log/cups/access_log -> access_log
 def get_filename_part(filename):
     try:
-        pos = filename.rindex('/')
-        base_name = filename[pos + 1:]
+        index = filename.rindex('/')
+        base_name = filename[index + 1:]
         return base_name
     except:
         return filename
