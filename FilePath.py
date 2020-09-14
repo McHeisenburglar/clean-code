@@ -1,5 +1,4 @@
 import re
-import random
 
 # "log/cups/access_log" -> "log/cups/"
 def get_path_part(filename):
