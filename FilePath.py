@@ -2,41 +2,33 @@ import re
 import random
 
 # log/cups/access_log -> log/cups/
-def get_path_part(sFilename):
-    if len(sFilename) > 0 and sFilename[len(sFilename) - 1] == '/':
-        return sFilename
+def get_path_part(filename):
+    if filename[len(filename) - 1] == '/':
+        return filename
 
     try:
-        #integer is index where the last slash is found
-        index = sFilename.rindex('/')
+        index = filename.rindex('/')
+        dir_name = filename[0: index + 1]
+        return dir_name
     except:
-        index = -1
-
-    dirName = ''
-    if index >= 0:
-        dirName = sFilename[0: index + 1]
-    else:
-        dirName = ''
-
-    return dirName
+        return ''
 
 # log/cups/access_log -> access_log
-def get_filename_part(sFilename):
+def get_filename_part(filename):
     try:
-        int(sFilename.rindex('/'))
+        pos = filename.rindex('/')
+        base_name = filename[pos + 1:]
+        return base_name
     except:
-        return sFilename
+        return filename
 
-    pos = sFilename.rindex('/')
-    base_name = sFilename[pos + 1:]
-    return base_name
 
 
 # assets/image.png -> png
-def get_file_extension(sFilename):
+def get_file_extension(filename):
     try:
-        occurrences = [m.start() for m in re.finditer('\.', sFilename)]
-        return sFilename[occurrences[-1] + 1:]
+        occurrences = [m.start() for m in re.finditer('\.', filename)]
+        return filename[occurrences[-1] + 1:]
     except:
         pass
 
