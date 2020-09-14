@@ -8,13 +8,13 @@ def get_path_part(sFilename):
 
     try:
         #integer is index where the last slash is found
-        integer = int(sFilename.rindex('/'))
+        index = sFilename.rindex('/')
     except:
-        integer = -1
+        index = -1
 
     dirName = ''
-    if integer >= 0:
-        dirName = sFilename[0: integer + 1]
+    if index >= 0:
+        dirName = sFilename[0: index + 1]
     else:
         dirName = ''
 
